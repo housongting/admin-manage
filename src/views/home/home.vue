@@ -26,15 +26,15 @@
                     <span>{{value.title}}</span>
                   </template>
                   <!-- 三级未做下拉 -->
-                  <el-menu-item v-for="(x,y) in value.menuChild" :key="y" :index="x.path" @click="addTab(x.index)">{{x.title}}</el-menu-item>
+                  <el-menu-item v-for="(x,y) in value.menuChild" :key="y" :index="x.path" @click="addTab(x)">{{x.title}}</el-menu-item>
                 </el-submenu>
-                <el-menu-item v-else :key="key" :index="value.path" @click="addTab(value.index)">
+                <el-menu-item v-else :key="key" :index="value.path" @click="addTab(value)">
                   <i :class="value.icon"></i>
                   <span slot="title">{{value.title}}</span>
                 </el-menu-item>
               </template>
             </el-submenu>
-            <el-menu-item v-else :key="i" :index="v.path" @click="addTab(v.index)">
+            <el-menu-item v-else :key="i" :index="v.path" @click="addTab(v)">
               <i :class="v.icon"></i>
               <span slot="title">{{v.title}}</span>
             </el-menu-item>
@@ -43,12 +43,11 @@
         <div class="flex-grow-1">
           <div class="tab_tabs">
             <el-tabs v-model="editableTabsValue" type="card" closable @tab-remove="removeTab">
-              <el-tab-pane v-for="item in editableTabs" :key="item.name" :label="item.title" :name="item.name">
+              <el-tab-pane v-for="item in editableTabs" :key="item.index" :label="item.title" :name="item.index">
+                <router-view></router-view>
               </el-tab-pane>
-              <!-- <div class="scroll-bar"></div> -->
             </el-tabs>
           </div>
-          <!-- <router-view></router-view> -->
         </div>
       </el-container>
     </el-container>
@@ -94,19 +93,14 @@ export default {
         },
       ],
       isCollapse: false,
-      editableTabsValue: '2',
-      editableTabs: [
+      editableTabsValue: '1',   //默认选中
+      editableTabs: [ //已打开的页面
         {
-          title: 'Tab 1',
-          name: '1',
-          content: 'Tab 1 content'
-        }, {
-          title: 'Tab 2sdfsdfsdfsdf',
-          name: '2',
-          content: 'Tab 2 content'
+          title: '表单页面',
+          index: '1',
+          path: '/home/form'
         }
       ],
-      tabIndex: 2
     }
   },
   methods: {
@@ -118,32 +112,39 @@ export default {
         this.isCollapse = false
       }
     },
-    addTab (targetName) {
-      let newTabName = ++this.tabIndex + '';
-      console.log(newTabName, targetName)
-
-      // this.editableTabs.push({
-      //   title: 'New Tab',
-      //   name: newTabName,
-      //   content: 'New Tab content'
-      // });
-      // this.editableTabsValue = newTabName;
+    addTab (inData) {
+      let flag = true;  //可以新增
+      this.editableTabs.forEach((v) => {
+        if (v.index == inData.index) {
+          this.editableTabsValue = v.index;
+          flag = false;
+          return
+        }
+      })
+      if (flag) {
+        this.editableTabs.push({
+          title: inData.title,
+          index: inData.index,
+          path: inData.path
+        });
+        this.editableTabsValue = inData.index;  //打开新增的选项卡
+      }
     },
-    removeTab (targetName) {
-      let tabs = this.editableTabs;
-      let activeName = this.editableTabsValue;
-      if (activeName === targetName) {
-        tabs.forEach((tab, index) => {
-          if (tab.name === targetName) {
-            let nextTab = tabs[index + 1] || tabs[index - 1];
-            if (nextTab) {
-              activeName = nextTab.name;
+    removeTab (targetIndex) {
+      //targetIndex   删除标签的index
+      let activeIndex = this.editableTabsValue;
+      if (activeIndex == targetIndex) {
+        this.editableTabs.forEach((v, i) => {
+          if (v.index === targetIndex) {
+            let nextTab = this.editableTabs[i + 1] || this.editableTabs[i - 1];
+            if (nextTab) {  //已打开点击删除
+              activeIndex = nextTab.index;
             }
           }
         });
       }
-      this.editableTabsValue = activeName;
-      this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+      this.editableTabsValue = activeIndex;
+      this.editableTabs = this.editableTabs.filter(tab => tab.index != targetIndex);
     }
   },
 }
