@@ -1,0 +1,51 @@
+.home,
+.home>.el-container {
+  height: 100%;
+
+  .el-header {
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+
+    .el-icon-s-fold,
+    .el-icon-s-unfold {
+      font-size: 1.6rem;
+    }
+  }
+
+
+  .el-menu {
+    border-right: 0;
+  }
+
+  /*隐藏文字*/
+  .el-menu--collapse .el-submenu__title span {
+    display: none;
+  }
+
+  /*隐藏 > */
+  .el-menu--collapse .el-submenu__title .el-submenu__icon-arrow {
+    display: none;
+  }
+
+  .el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 240px;
+    min-height: 400px;
+  }
+
+  .welcom-admin {
+    margin-right: 1rem;
+  }
+
+  .admin-image {
+    width: 50px;
+    border-radius: 50%;
+  }
+
+  /deep/ .tab_tabs .el-tabs--card>.el-tabs__header .el-tabs__item.is-active {
+    border-bottom-color: #E4E7ED;
+  }
+
+
+
+
+
+}
