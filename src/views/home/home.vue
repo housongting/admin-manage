@@ -9,7 +9,7 @@
           <img class="admin-image pointer" :src="admin_image" alt="">
         </div>
       </el-header>
-      <el-container>
+      <el-container style="overflow:hidden">
         <el-menu :collapse="isCollapse" :default-active="this.$route.path" router unique-opened class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" active-text-color="#409Eff">
           <template v-for="(v,i) in menu_date">
             <!-- 一级 -->
@@ -40,13 +40,13 @@
             </el-menu-item>
           </template>
         </el-menu>
-        <div class="flex-grow-1">
-          <div class="tab_tabs">
-            <el-tabs v-model="editableTabsValue" type="card" closable @tab-remove="removeTab">
-              <el-tab-pane v-for="item in editableTabs" :key="item.index" :label="item.title" :name="item.index">
-                <router-view></router-view>
-              </el-tab-pane>
-            </el-tabs>
+        <div class="flex-grow-1 d-flex flex-direction-column">
+          <el-tabs v-model="editableTabsValue" type="card" @tab-remove="removeTab" @tab-click="tabClick">
+            <el-tab-pane v-for="item in editableTabs" :key="item.index" :label="item.title+item.index" :name="item.index" :closable="item.closable">
+            </el-tab-pane>
+          </el-tabs>
+          <div class="flex-grow-1 viewContainer">
+            <router-view></router-view>
           </div>
         </div>
       </el-container>
@@ -61,47 +61,32 @@ export default {
   data () {
     return {
       switchIcon: 2,
+      editableTabsValue: '',
+      editableTabs: [],
       admin_image: require('../../assets/images/admin.png'),
+      //侧边栏数据
       menu_date: [
         //menuMark:0无子菜单，1有子菜单
-        { title: '表单页面', menuMark: 0, index: '1', path: '/home/form', icon: 'el-icon-menu' },
-        { title: '表格页面', menuMark: 0, index: '2', path: '/home/tables', icon: 'el-icon-menu' },
+        { title: '表单页面', menuMark: 0, index: '1', path: '/home/forms', icon: 'el-icon-menu', closable: false },
+        { title: '表格页面', menuMark: 0, index: '2', path: '/home/tables', icon: 'el-icon-menu', closable: true },
         {
-          title: '加载动画页面',
+          title: '加载动画',
           menuMark: 1,
           index: '3',
           icon: 'el-icon-location',
           menuChild: [
-            {
-              title: '按钮加载',
-              menuMark: 0,
-              index: '3-1',
-              icon: 'el-icon-menu',
-              path: '/home/btnLoading'
-            },
-            {
-              title: '全局/局部加载',
-              menuMark: 1,
-              index: '3-2',
-              icon: 'el-icon-location',
-              menuChild: [
-                { title: '全局加载', menuMark: 0, index: '3-2-1', path: '/home/allLoading' },
-                { title: '局部加载', menuMark: 0, index: '3-2-2', path: '/home/partLoading' },
-              ]
-            },
+            { title: '按钮加载', menuMark: 0, index: '3-1', icon: 'el-icon-menu', path: '/home/btnLoading', closable: true },
+            { title: '全局加载', icon: 'el-icon-menu', menuMark: 0, index: '3-2', path: '/home/allLoading', closable: true },
           ]
         },
+        { title: '重复页', menuMark: 0, index: '4', path: '/home/repeatPage', icon: 'el-icon-menu', closable: true },
       ],
       isCollapse: false,
-      editableTabsValue: '1',   //默认选中
-      editableTabs: [ //已打开的页面
-        {
-          title: '表单页面',
-          index: '1',
-          path: '/home/form'
-        }
-      ],
     }
+  },
+  created () {
+    this.editableTabsValue = this.$store.state.editableTabsValue;
+    this.editableTabs = this.$store.state.editableTabs;
   },
   methods: {
     isCollapseBtn (val) {
@@ -125,12 +110,15 @@ export default {
         this.editableTabs.push({
           title: inData.title,
           index: inData.index,
-          path: inData.path
+          path: inData.path,
+          closable: inData.closable,
         });
+        // this.$router.push({ path: inData.path });
         this.editableTabsValue = inData.index;  //打开新增的选项卡
       }
     },
     removeTab (targetIndex) {
+      console.log(targetIndex);
       //targetIndex   删除标签的index
       let activeIndex = this.editableTabsValue;
       if (activeIndex == targetIndex) {
@@ -139,14 +127,22 @@ export default {
             let nextTab = this.editableTabs[i + 1] || this.editableTabs[i - 1];
             if (nextTab) {  //已打开点击删除
               activeIndex = nextTab.index;
+              let selctedArr = this.editableTabs.filter((v) => { return v.index == activeIndex });
+              this.$router.push({ path: selctedArr[0].path });
             }
           }
         });
       }
       this.editableTabsValue = activeIndex;
       this.editableTabs = this.editableTabs.filter(tab => tab.index != targetIndex);
+    },
+    tabClick (tab) {
+      let selctedArr = this.editableTabs.filter((v) => { return v.index == tab.name });
+      this.$router.push({ path: selctedArr[0].path });
     }
   },
+  mounted () {
+  }
 }
 </script>
 

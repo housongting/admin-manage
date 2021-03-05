@@ -1,15 +1,15 @@
 <template>
-  <div>
-    我是表单页面
+  <div class="p-15 bg-color-height">
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'form'
+  name: 'repeatPage'
 }
 </script>
 
 <style lang="scss" scoped>
-@import "./form.scss";
+@import "./repeatPage.scss";
 </style>

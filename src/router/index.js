@@ -13,9 +13,9 @@ const routes = [{
     name: 'home',
     component: () => import('../views/home/home.vue'),
     children: [{
-        path: '/home/form',
-        name: 'form',
-        component: () => import('../views/form/form.vue'),
+        path: '/home/forms',
+        name: 'forms',
+        component: () => import('../views/forms/forms.vue'),
       },
       {
         path: '/home/tables',
@@ -33,9 +33,9 @@ const routes = [{
         component: () => import('../views/allLoading/allLoading.vue'),
       },
       {
-        path: '/home/partLoading',
-        name: 'partLoading',
-        component: () => import('../views/partLoading/partLoading.vue'),
+        path: '/home/repeatPage',
+        name: 'repeatPage',
+        component: () => import('../views/repeatPage/repeatPage.vue'),
       }
     ]
   },
