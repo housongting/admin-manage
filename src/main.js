@@ -6,13 +6,12 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import $ from 'jquery'
 
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(VueAxios, axios)
-Vue.prototype.$ = $
+//axios.defaults.baseURL="http://localhost:8080"
 
 new Vue({
   router,

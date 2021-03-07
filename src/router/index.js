@@ -4,14 +4,20 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [{
+    path: '/',
+    //name: 'login',
+    redirect: '/login', //重定向
+    //component: () => import('../views/login/login.vue')
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import('../views/login/login.vue')
   },
-  
   {
     path: '/home',
-    name: 'home',
+    // name: 'home',
+    redirect: '/home/forms',
     component: () => import('../views/home/home.vue'),
     children: [{
         path: '/home/forms',
@@ -37,9 +43,18 @@ const routes = [{
         path: '/home/repeatPage',
         name: 'repeatPage',
         component: () => import('../views/repeatPage/repeatPage.vue'),
+      },
+      {
+        path: '/home/jurisdiction',
+        name: 'jurisdiction',
+        component: () => import('../views/jurisdiction/jurisdiction.vue'),
       }
     ]
   },
+  {
+    path: '*',
+    component: () => import('../views/404/404.vue')
+  }
 ]
 
 const router = new VueRouter({

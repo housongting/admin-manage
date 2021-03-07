@@ -1,0 +1,29 @@
+{
+    "code": 0,
+    "data":[
+        {"admin": {"username": "admin","token": "admin123456789","menu":[
+               {"title":"表单页面","index": "1","path":"/home/forms","icon":"el-icon-menu","losable":false},
+               {"title":"表格页面","index": "2","path":"/home/tables","icon":"el-icon-menu","losable":true},
+               {"title":"加载动画","index": "3","icon":"el-icon-location","menuChild":[
+                {"title":"按钮加载","index": "3-1","path":"/home/btnLoading","icon":"el-icon-menu","losable":true},
+                {"title":"全局加载","index": "3-2","path":"/home/allLoading","icon":"el-icon-menu","losable":true}
+               ]},
+               {"title":"重复页","index": "4","path":"/home/repeatPage","icon":"el-icon-menu","losable":true},
+               {"title":"权限列表","index": "5","path":"/home/jurisdiction","icon":"el-icon-menu","losable":true}
+            ]}
+        },
+        {"staff":{"username": "staff","token": "staff123456789","menu":[
+            {"title":"表单页面","index": "1","path":"/home/forms","icon":"el-icon-menu","losable":false},
+            {"title":"表格页面","index": "2","path":"/home/tables","icon":"el-icon-menu","losable":true},
+            {"title":"加载动画","index": "3","icon":"el-icon-location","menuChild":[
+             {"title":"按钮加载","index": "3-1","path":"/home/btnLoading","icon":"el-icon-menu","losable":true},
+             {"title":"全局加载","index": "3-2","path":"/home/allLoading","icon":"el-icon-menu","losable":true}
+            ]},
+            {"title":"重复页","index": "4","path":"/home/repeatPage","icon":"el-icon-menu","losable":true}
+            ]}
+        }
+    ]
+}
+
+
+   
