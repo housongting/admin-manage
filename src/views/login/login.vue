@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import {initDynamicRoutes} from '../../router/index.js'
 export default {
   name: "login",
   data() {
@@ -45,7 +46,8 @@ export default {
                 sessionStorage.setItem('token',responData[0].admin.token);
                 that.$store.commit('setUsername',responData[0].admin.username)
                 that.$store.commit('setMenuList',responData[0].admin.menu)
-                that.$router.push({ path: "/home/forms" });
+                that.$router.push({ path: "/home" });
+                initDynamicRoutes();//调用router文件夹的index.js方法
               });
                 //员工
           }else if (this.formData.username == "staff") {
@@ -55,7 +57,8 @@ export default {
                 sessionStorage.setItem('token',responData[1].staff.token);
                 that.$store.commit('setUsername',responData[1].staff.username)
                 that.$store.commit('setMenuList',responData[1].staff.menu)
-                that.$router.push({ path: "/home/forms" });
+                that.$router.push({ path: "/home" });
+                initDynamicRoutes();//调用router文件夹的index.js方法
               });
           }
           this.$message({

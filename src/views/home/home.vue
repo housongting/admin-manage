@@ -5,7 +5,7 @@
         <i class="el-icon-s-fold pointer SS" v-show="switchIcon==2" @click="isCollapseBtn(1)"></i>
         <i class="el-icon-s-unfold pointer ZK" v-show="switchIcon==1" @click="isCollapseBtn(2)"></i>
         <div class="d-flex align-items-center">
-          <span class="welcom-admin">欢迎你，管理员！</span>
+          <span class="welcom-admin">欢迎你，{{username}}！</span>
           <img class="admin-image pointer" :src="admin_image" alt="" @click="backAdmin">
         </div>
       </el-header>
@@ -38,7 +38,7 @@
             <el-menu-item v-else :key="i" :index="v.path" @click="addTab(v)">
               <i :class="v.icon"></i>
               <span slot="title">{{v.title}}</span>
-            </el-menu-item>
+            </el-menu-item> 
           </template>
         </el-menu>
         <div class="flex-grow-1 d-flex flex-direction-column">
@@ -62,70 +62,21 @@ export default {
   name: "home",
   data() {
     return {
+      username:'',
       switchIcon: 2,
       editableTabsValue: "1", //tabs默认选中
       editableTabs: [
         //tabs标签数组
-        {
-          title: "表单页面",
-          index: "1",
-          path: "/home/forms",
-          closable: false
-        }
+        // {
+        //   title: "表单页面",
+        //   index: "1",
+        //   path: "/home/forms",
+        //   closable: false
+        // }
       ],
       admin_image: require("../../assets/images/admin.png"),
       //侧边栏数据
-      menu_date: [
-        //menuMark:0无子菜单，1有子菜单
-        {
-          title: "表单页面",
-          menuMark: 0,
-          index: "1",
-          path: "/home/forms",
-          icon: "el-icon-menu",
-          closable: false
-        },
-        {
-          title: "表格页面",
-          menuMark: 0,
-          index: "2",
-          path: "/home/tables",
-          icon: "el-icon-menu",
-          closable: true
-        },
-        {
-          title: "加载动画",
-          menuMark: 1,
-          index: "3",
-          icon: "el-icon-location",
-          menuChild: [
-            {
-              title: "按钮加载",
-              menuMark: 0,
-              index: "3-1",
-              icon: "el-icon-menu",
-              path: "/home/btnLoading",
-              closable: true
-            },
-            {
-              title: "全局加载",
-              icon: "el-icon-menu",
-              menuMark: 0,
-              index: "3-2",
-              path: "/home/allLoading",
-              closable: true
-            }
-          ]
-        },
-        {
-          title: "重复页",
-          menuMark: 0,
-          index: "4",
-          path: "/home/repeatPage",
-          icon: "el-icon-menu",
-          closable: true
-        }
-      ],
+      menu_date: [],
       isCollapse: false
     };
   },
@@ -188,13 +139,16 @@ export default {
       this.$router.push({ path: selctedArr[0].path });
     },
     backAdmin(){
+      //删除sessionStorage数据
       sessionStorage.clear();
+      //清除vuex中的数据---让当前页面刷新
+      window.location.reload();
       this.$router.push({path:"/login"})
     }
   },
   created() {
      //this.menu_date=this.$store.state.menuList
-     console.log(this.menuList)
+    this.username=this.$store.state.username;
     this.menu_date=this.menuList
   },
   //https://www.bilibili.com/video/BV15Q4y1K79c?from=search&seid=1809793221499468299  49.36

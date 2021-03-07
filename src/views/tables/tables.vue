@@ -111,8 +111,8 @@ export default {
     }
   },
   methods: {
-    formatter (row, column) {
-      console.log(row, column);
+    formatter (row) {
+     // console.log(row, column);
       return row.address;
     },
     filterTag (value, row) {
