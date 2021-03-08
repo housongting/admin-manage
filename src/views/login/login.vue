@@ -9,17 +9,18 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="loginIn('ruleForm')">登
-          <span style="width:50px;display:inline-block"></span>录</el-button>
+          <span style="width:50px;display:inline-block"></span>录
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-import {initDynamicRoutes} from '../../router/index.js'
+import { initDynamicRoutes } from '../../router/index.js'
 export default {
   name: "login",
-  data() {
+  data () {
     return {
       formData: {
         username: "",
@@ -31,9 +32,9 @@ export default {
       }
     };
   },
-  mounted() {},
+  mounted () { },
   methods: {
-    loginIn(formName) {
+    loginIn (formName) {
       var that = this;
       this.$refs[formName].validate(valid => {
         //验证通过
@@ -41,31 +42,26 @@ export default {
           //管理员
           if (this.formData.username == "admin") {
             that.axios.get("http://localhost:8080/login.json")
-              .then(function(res) {
+              .then(function (res) {
                 var responData = res.data.data;
-                sessionStorage.setItem('token',responData[0].admin.token);
-                that.$store.commit('setUsername',responData[0].admin.username)
-                that.$store.commit('setMenuList',responData[0].admin.menu)
+                sessionStorage.setItem('token', responData[0].admin.token);  //用于路由导航守卫
+                that.$store.commit('setUsername', responData[0].admin.username);
+                that.$store.commit('setMenuList', responData[0].admin.menu);
+                initDynamicRoutes();   //调用router文件夹的index.js方法，动态添加路由
                 that.$router.push({ path: "/home" });
-                initDynamicRoutes();//调用router文件夹的index.js方法
               });
-                //员工
-          }else if (this.formData.username == "staff") {
+            //员工
+          } else if (this.formData.username == "staff") {
             that.axios.get("http://localhost:8080/login.json")
-              .then(function(res) {
-              var responData = res.data.data;
-                sessionStorage.setItem('token',responData[1].staff.token);
-                that.$store.commit('setUsername',responData[1].staff.username)
-                that.$store.commit('setMenuList',responData[1].staff.menu)
+              .then(function (res) {
+                var responData = res.data.data;
+                sessionStorage.setItem('token', responData[1].staff.token);  //用于路由导航守卫
+                that.$store.commit('setUsername', responData[1].staff.username)
+                that.$store.commit('setMenuList', responData[1].staff.menu)
+                initDynamicRoutes();//调用router文件夹的index.js方法，动态添加路由
                 that.$router.push({ path: "/home" });
-                initDynamicRoutes();//调用router文件夹的index.js方法
               });
           }
-          this.$message({
-            message: "恭喜你登录成功",
-            duration: 1000,
-            type: "success"
-          });
         } else {
           this.$message.error({
             message: "请检查账号，密码是否正确",

@@ -38,7 +38,7 @@
             <el-menu-item v-else :key="i" :index="v.path" @click="addTab(v)">
               <i :class="v.icon"></i>
               <span slot="title">{{v.title}}</span>
-            </el-menu-item> 
+            </el-menu-item>
           </template>
         </el-menu>
         <div class="flex-grow-1 d-flex flex-direction-column">
@@ -57,12 +57,12 @@
 </template>
 
 <script> 
-import {mapState} from "vuex"
+import { mapState } from "vuex"
 export default {
   name: "home",
-  data() {
+  data () {
     return {
-      username:'',
+      username: '',
       switchIcon: 2,
       editableTabsValue: "1", //tabs默认选中
       editableTabs: [
@@ -81,7 +81,7 @@ export default {
     };
   },
   methods: {
-    isCollapseBtn(val) {
+    isCollapseBtn (val) {
       this.switchIcon = val;
       if (this.switchIcon == 1) {
         this.isCollapse = true;
@@ -89,7 +89,7 @@ export default {
         this.isCollapse = false;
       }
     },
-    addTab(inData) {
+    addTab (inData) {
       let flag = true; //可以新增
       this.editableTabs.forEach(v => {
         if (v.index == inData.index) {
@@ -105,10 +105,10 @@ export default {
           path: inData.path,
           closable: inData.closable
         });
-       this.editableTabsValue = inData.index; //打开新增的选项卡
+        this.editableTabsValue = inData.index; //打开新增的选项卡
       }
     },
-    removeTab(targetIndex) {
+    removeTab (targetIndex) {
       //console.log(targetIndex);
       //targetIndex   删除标签的index
       let activeIndex = this.editableTabsValue;
@@ -132,29 +132,28 @@ export default {
         tab => tab.index != targetIndex
       );
     },
-    tabClick(tab) {
+    tabClick (tab) {
       let selctedArr = this.editableTabs.filter(v => {
         return v.index == tab.name;
       });
       this.$router.push({ path: selctedArr[0].path });
     },
-    backAdmin(){
+    backAdmin () {
       //删除sessionStorage数据
       sessionStorage.clear();
       //清除vuex中的数据---让当前页面刷新
+      this.$router.push({ path: "/login" })
       window.location.reload();
-      this.$router.push({path:"/login"})
     }
   },
-  created() {
-     //this.menu_date=this.$store.state.menuList
-    this.username=this.$store.state.username;
-    this.menu_date=this.menuList
+  created () {
+    //this.menu_date=this.$store.state.menuList
+    this.username = this.$store.state.username;
+    this.menu_date = this.menuList
   },
-  //https://www.bilibili.com/video/BV15Q4y1K79c?from=search&seid=1809793221499468299  49.36
-  mounted() {},
-  computed:{
-      ...mapState(["menuList"])  //映射数据
+  mounted () { },
+  computed: {
+    ...mapState(["menuList"])  //映射数据
   }
 };
 </script>
