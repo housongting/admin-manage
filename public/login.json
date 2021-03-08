@@ -21,7 +21,7 @@
              {"title":"全局加载","titlePath":"allLoading","index": "3-2","path":"/home/allLoading","icon":"el-icon-menu","menuMark":"0","closable":true,"authorityList":["view"]}
             ]},
             {"title":"重复页","titlePath":"repeatPage","index": "4","path":"/home/repeatPage","icon":"el-icon-menu","menuMark":"0","closable":true,"authorityList":["view"]},
-            {"title":"功能权限","titlePath":"funAuthority","index": "6","path":"/home/funAuthority","icon":"el-icon-menu","menuMark":"0","closable":true,"authorityList":["view"]}
+            {"title":"功能权限","titlePath":"funAuthority","index": "6","path":"/home/funAuthority","icon":"el-icon-menu","menuMark":"0","closable":true,"authorityList":["view","add"]}
             ]}
         }
     ]

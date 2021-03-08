@@ -15,7 +15,8 @@ import store from '../store'
 const tablesRule = {
   path: '/home/tables',
   name: 'tables',
-  component: tables
+  component: tables,
+ // mate:["view"]
 }
 const formsRule = {
   path: '/home/forms',
@@ -105,6 +106,7 @@ export function initDynamicRoutes() {
       })
     }
   })
+  //console.log(currentRoutes[2].children)
   router.addRoutes(currentRoutes);
 }
 

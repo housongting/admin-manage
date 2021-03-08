@@ -11,10 +11,10 @@
             <el-table-column align="center">
               <template slot="header">
                 <!-- v-permission 自定义属性解决功能权限 -->
-                <el-button type="primary" v-permission="{action:'view'}">仅管理员可操作</el-button>
+                <el-button type="primary" v-permission="{action:'edit',effect:'del'}">仅管理员可操作</el-button>
               </template>
               <template>
-                <el-button size="mini">新增</el-button>
+                <el-button size="mini" v-permission="{action:'edit',effect:'disabled'}">新增</el-button>
                 <el-button size="mini" type="danger">删除</el-button>
               </template>
             </el-table-column>

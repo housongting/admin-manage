@@ -12,15 +12,16 @@
           <span style="width:50px;display:inline-block"></span>录
         </el-button>
       </el-form-item>
+      <p style="color:#DCDFE6;">admin<br>staff</p>
     </el-form>
   </div>
 </template>
 
 <script>
-import { initDynamicRoutes } from '../../router/index.js'
+import { initDynamicRoutes } from "../../router/index.js";
 export default {
   name: "login",
-  data () {
+  data() {
     return {
       formData: {
         username: "",
@@ -32,33 +33,35 @@ export default {
       }
     };
   },
-  mounted () { },
+  mounted() {},
   methods: {
-    loginIn (formName) {
+    loginIn(formName) {
       var that = this;
       this.$refs[formName].validate(valid => {
         //验证通过
         if (valid) {
           //管理员
           if (this.formData.username == "admin") {
-            that.axios.get("http://localhost:8080/login.json")
-              .then(function (res) {
+            that.axios
+              .get("http://localhost:8080/login.json")
+              .then(function(res) {
                 var responData = res.data.data;
-                sessionStorage.setItem('token', responData[0].admin.token);  //用于路由导航守卫
-                that.$store.commit('setUsername', responData[0].admin.username);
-                that.$store.commit('setMenuList', responData[0].admin.menu);
-                initDynamicRoutes();   //调用router文件夹的index.js方法，动态添加路由
+                sessionStorage.setItem("token", responData[0].admin.token); //用于路由导航守卫
+                that.$store.commit("setUsername", responData[0].admin.username);
+                that.$store.commit("setMenuList", responData[0].admin.menu);
+                initDynamicRoutes(); //调用router文件夹的index.js方法，动态添加路由
                 that.$router.push({ path: "/home" });
               });
             //员工
           } else if (this.formData.username == "staff") {
-            that.axios.get("http://localhost:8080/login.json")
-              .then(function (res) {
+            that.axios
+              .get("http://localhost:8080/login.json")
+              .then(function(res) {
                 var responData = res.data.data;
-                sessionStorage.setItem('token', responData[1].staff.token);  //用于路由导航守卫
-                that.$store.commit('setUsername', responData[1].staff.username)
-                that.$store.commit('setMenuList', responData[1].staff.menu)
-                initDynamicRoutes();//调用router文件夹的index.js方法，动态添加路由
+                sessionStorage.setItem("token", responData[1].staff.token); //用于路由导航守卫
+                that.$store.commit("setUsername", responData[1].staff.username);
+                that.$store.commit("setMenuList", responData[1].staff.menu);
+                initDynamicRoutes(); //调用router文件夹的index.js方法，动态添加路由
                 that.$router.push({ path: "/home" });
               });
           }
