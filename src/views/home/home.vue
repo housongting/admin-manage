@@ -42,7 +42,7 @@
         </el-menu>
         <div class="rightContentBox">
           <el-tabs v-model="editableTabsValue" type="card" @tab-remove="removeTab" @tab-click="tabClick">
-            <el-tab-pane v-for="item in editableTabs" :key="item.index" :label="item.title" :name="item.index" :closable="item.closable">
+            <el-tab-pane v-for="item in editableTabs" :key="item.index" :label="item.title" :name="item.index" :closable="true">
             </el-tab-pane>
           </el-tabs>
           <div class="viewContainer bg-color" v-loading="this.$store.state.loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">

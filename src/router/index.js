@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store'
 import login from '../views/login/login.vue'
 import home from '../views/home/home.vue'
 import forms from '../views/forms/forms.vue'
@@ -10,13 +11,13 @@ import repeatPage from '../views/repeatPage/repeatPage.vue'
 import jurisdiction from '../views/jurisdiction/jurisdiction.vue'
 import notFound from '../views/notFound/notFound.vue'
 import funAuthority from '../views/funAuthority/funAuthority.vue'
-import store from '../store'
+import repeatPageParams from '../views/repeatPageParams/repeatPageParams.vue'
 
 const tablesRule = {
   path: '/home/tables',
   name: 'tables',
   component: tables,
- // mate:["view"]
+  // mate:["view"]
 }
 const formsRule = {
   path: '/home/forms',
@@ -48,7 +49,11 @@ const funAuthorityRule = {
   name: 'funAuthority',
   component: funAuthority,
 }
-
+const repeatPageParamsRule = {
+  path: '/home/repeatPageParams',
+  name: 'repeatPageParams',
+  component: repeatPageParams,
+}
 
 const ruleMapping = {
   "tables": tablesRule,
@@ -57,7 +62,7 @@ const ruleMapping = {
   "allLoading": allLoadingRule,
   "repeatPage": repeatPageRule,
   "jurisdiction": jurisdictionRule,
-  "funAuthority": funAuthorityRule
+  "funAuthority": funAuthorityRule,
 }
 
 Vue.use(VueRouter)
@@ -75,11 +80,10 @@ const routes = [{
     path: '/home',
     component: home,
     redirect: '/home/forms',
-    children: [{
-      path: '/home/forms',
-      name: 'forms',
-      component: forms
-    }]
+    children: [
+      formsRule, //默认
+      repeatPageParamsRule //重复页
+    ]
   },
   {
     path: '*',
