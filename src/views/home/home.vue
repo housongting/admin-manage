@@ -95,7 +95,7 @@ export default {
           path: inData.path,
           closable: inData.closable
         });
-        this.editableTabsValue = inData.index; //打开新增的选项卡
+        this.editableTabsValue = inData.index;  //打开且选中新增的选项卡
       }
     },
     removeTab (targetIndex) {
