@@ -1,10 +1,10 @@
 <template>
-  <div class="p-15 bg-color-height">
+  <div class="p-15 bg-color">
     <div class="bg-white p-3">
       <el-row :gutter="20">
         <el-col :span="12">
           <h2 class="pb-3">前端数据校验</h2>
-          <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="width:500px">
+          <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="width:400px">
             <el-form-item label="电话号码" prop="telephpne">
               <el-input v-model="ruleForm.telephpne"></el-input>
             </el-form-item>
@@ -18,7 +18,7 @@
         </el-col>
         <el-col :span="12">
           <h2 class="pb-3">后端数据校验</h2>
-          <el-form :model="ruleForm2" :rules="rules" ref="ruleForm2" label-width="100px" class="demo-ruleForm" style="width:500px">
+          <el-form :model="ruleForm2" :rules="rules" ref="ruleForm2" label-width="100px" class="demo-ruleForm" style="width:400px">
             <el-form-item label="年龄" prop="age">
               <el-input v-model="ruleForm2.age"></el-input>
             </el-form-item>
@@ -61,6 +61,9 @@
           </el-cascader>
         </el-col>
       </el-row>
+    </div>
+    <div class="bg-white p-3 mt-3" style="height:400px">
+
     </div>
   </div>
 </template>

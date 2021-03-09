@@ -1,5 +1,5 @@
 <template>
-  <div class="p-15 bg-color-height">
+  <div class="p-15">
     <div class="bg-white p-3" style="height:400px">
       <el-row :gutter="20">
         <el-col :span="24">

@@ -46,9 +46,8 @@
   padding: 15px;
 }
 
-.bg-color-height {
+.bg-color {
   background: #f6f6f6;
-  height: 100%;
   box-sizing: border-box;
 }
 

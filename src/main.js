@@ -11,7 +11,6 @@ import './utils/permission.js'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(VueAxios, axios)
-//axios.defaults.baseURL="http://localhost:8080"
 
 new Vue({
   router,

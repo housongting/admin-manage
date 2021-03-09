@@ -9,9 +9,8 @@
           <img class="admin-image pointer" :src="admin_image" alt="" @click="backAdmin">
         </div>
       </el-header>
-      <el-container style="overflow:hidden">
-        <!-- :default-active="this.$route.path" -->
-        <el-menu :collapse="isCollapse" router default-active="this.$route.path" unique-opened class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" active-text-color="#409Eff">
+      <div class="contentBox">
+        <el-menu :collapse="isCollapse" router default-active="this.$route.path" unique-opened :collapse-transition="false" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" active-text-color="#409Eff">
           <template v-for="(v,i) in menu_date">
             <!-- 一级 -->
             <el-submenu v-if="v.menuMark==1" :key="i" :index="v.index">
@@ -41,19 +40,18 @@
             </el-menu-item>
           </template>
         </el-menu>
-        <div class="flex-grow-1 d-flex flex-direction-column">
+        <div class="rightContentBox">
           <el-tabs v-model="editableTabsValue" type="card" @tab-remove="removeTab" @tab-click="tabClick">
-            <el-tab-pane v-for="item in editableTabs" :key="item.index" :label="item.title+item.index" :name="item.index" :closable="item.closable">
+            <el-tab-pane v-for="item in editableTabs" :key="item.index" :label="item.title" :name="item.index" :closable="item.closable">
             </el-tab-pane>
           </el-tabs>
-          <div class="flex-grow-1 viewContainer">
+          <div class="viewContainer bg-color" v-loading="this.$store.state.loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
             <router-view></router-view>
           </div>
         </div>
-      </el-container>
+      </div>
     </el-container>
   </div>
-
 </template>
 
 <script> 
@@ -65,15 +63,7 @@ export default {
       username: '',
       switchIcon: 2,
       editableTabsValue: "1", //tabs默认选中
-      editableTabs: [
-        //tabs标签数组
-        // {
-        //   title: "表单页面",
-        //   index: "1",
-        //   path: "/home/forms",
-        //   closable: false
-        // }
-      ],
+      editableTabs: [],//tabs标签数组
       admin_image: require("../../assets/images/admin.png"),
       //侧边栏数据
       menu_date: [],
@@ -147,14 +137,14 @@ export default {
     }
   },
   created () {
-    //this.menu_date=this.$store.state.menuList
     this.username = this.$store.state.username;
     this.menu_date = this.menuList
   },
   mounted () { },
   computed: {
     ...mapState(["menuList"])  //映射数据
-  }
+  },
+
 };
 </script>
 

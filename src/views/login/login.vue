@@ -12,7 +12,7 @@
           <span style="width:50px;display:inline-block"></span>录
         </el-button>
       </el-form-item>
-      <p style="color:#DCDFE6;">admin<br>staff</p>
+      <p style="color:#DCDFE6;">admin <span style="width:10px;display:inline-block"></span>管理员<br>staff<span style="width:10px;display:inline-block"></span>成员</p>
     </el-form>
   </div>
 </template>
@@ -21,7 +21,7 @@
 import { initDynamicRoutes } from "../../router/index.js";
 export default {
   name: "login",
-  data() {
+  data () {
     return {
       formData: {
         username: "",
@@ -33,9 +33,9 @@ export default {
       }
     };
   },
-  mounted() {},
+  mounted () { },
   methods: {
-    loginIn(formName) {
+    loginIn (formName) {
       var that = this;
       this.$refs[formName].validate(valid => {
         //验证通过
@@ -44,7 +44,7 @@ export default {
           if (this.formData.username == "admin") {
             that.axios
               .get("http://localhost:8080/login.json")
-              .then(function(res) {
+              .then(function (res) {
                 var responData = res.data.data;
                 sessionStorage.setItem("token", responData[0].admin.token); //用于路由导航守卫
                 that.$store.commit("setUsername", responData[0].admin.username);
@@ -56,7 +56,7 @@ export default {
           } else if (this.formData.username == "staff") {
             that.axios
               .get("http://localhost:8080/login.json")
-              .then(function(res) {
+              .then(function (res) {
                 var responData = res.data.data;
                 sessionStorage.setItem("token", responData[1].staff.token); //用于路由导航守卫
                 that.$store.commit("setUsername", responData[1].staff.username);

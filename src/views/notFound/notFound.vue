@@ -1,7 +1,5 @@
 <template>
-  <div class="text-center">
-    <img src="../../assets/images/notFount.gif" alt="">
-  </div>
+  <img src="../../assets/images/notFound.png" alt="">
 </template>
 
 <script>

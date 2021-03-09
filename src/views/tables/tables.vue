@@ -1,5 +1,5 @@
 <template>
-  <div class="p-15 bg-color-height">
+  <div class="p-15">
     <div class="bg-white p-3 mb-3">
       <el-row :gutter="20">
         <el-col :span="12">
@@ -112,7 +112,7 @@ export default {
   },
   methods: {
     formatter (row) {
-     // console.log(row, column);
+      // console.log(row, column);
       return row.address;
     },
     filterTag (value, row) {

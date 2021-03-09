@@ -17,6 +17,10 @@ export default new Vuex.Store({
     setUsername(state, data) {
       state.username = data;
       sessionStorage.setItem('username', data);
+    },
+    setLoading(state, data) {
+      state.loading = data;
+      console.log(data);
     }
   },
   actions: {},
