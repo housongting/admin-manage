@@ -13,14 +13,14 @@
         <el-menu :collapse="isCollapse" router default-active="this.$route.path" unique-opened :collapse-transition="false" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" active-text-color="#409Eff">
           <template v-for="(v,i) in menu_date">
             <!-- 一级 -->
-            <el-submenu v-if="v.menuMark==1" :key="i" :index="v.index">
+            <el-submenu v-if="v.menuMark==1" :key="i" :index="v.id">
               <template slot="title">
                 <i :class="v.icon"></i>
                 <span>{{v.title}}</span>
               </template>
               <!-- 二级 -->
               <template v-for="(value,key) in v.menuChild">
-                <el-submenu v-if="value.menuMark==1" :key="key" :index="value.index">
+                <el-submenu v-if="value.menuMark==1" :key="key" :index="value.id">
                   <template slot="title">
                     <i :class="value.icon"></i>
                     <span>{{value.title}}</span>
@@ -42,11 +42,13 @@
         </el-menu>
         <div class="rightContentBox">
           <el-tabs v-model="editableTabsValue" type="card" @tab-remove="removeTab" @tab-click="tabClick">
-            <el-tab-pane v-for="item in editableTabs" :key="item.index" :label="item.title" :name="item.index" :closable="true">
+            <el-tab-pane v-for="item in editableTabs" :key="item.id" :label="item.title" :name="item.id" :closable="true">
             </el-tab-pane>
           </el-tabs>
           <div class="viewContainer bg-color" v-loading="this.$store.state.loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
-            <router-view></router-view>
+            <keep-alive>
+              <router-view></router-view>
+            </keep-alive>
           </div>
         </div>
       </div>
@@ -82,8 +84,8 @@ export default {
     addTab (inData) {
       let flag = true; //可以新增
       this.editableTabs.forEach(v => {
-        if (v.index == inData.index) {
-          this.editableTabsValue = v.index;
+        if (v.id == inData.id) {
+          this.editableTabsValue = v.id;
           flag = false;
           return;
         }
@@ -91,40 +93,40 @@ export default {
       if (flag) {
         this.editableTabs.push({
           title: inData.title,
-          index: inData.index,
+          id: inData.id,
           path: inData.path,
-          closable: inData.closable
+          //  closable: inData.closable
         });
-        this.editableTabsValue = inData.index;  //打开且选中新增的选项卡
+        this.editableTabsValue = inData.id;  //打开且选中新增的选项卡
       }
     },
-    removeTab (targetIndex) {
-      //console.log(targetIndex);
-      //targetIndex   删除标签的index
-      let activeIndex = this.editableTabsValue;
-      if (activeIndex == targetIndex) {
+    removeTab (targetId) {
+      //console.log(targetId);
+      //targetId   删除标签的ID
+      let activeId = this.editableTabsValue;
+      if (activeId == targetId) {
         this.editableTabs.forEach((v, i) => {
-          if (v.index === targetIndex) {
+          if (v.id === targetId) {
             let nextTab = this.editableTabs[i + 1] || this.editableTabs[i - 1];
             if (nextTab) {
               //已打开点击删除
-              activeIndex = nextTab.index;
+              activeId = nextTab.id;
               let selctedArr = this.editableTabs.filter(v => {
-                return v.index == activeIndex;
+                return v.id == activeId;
               });
               this.$router.push({ path: selctedArr[0].path });
             }
           }
         });
       }
-      this.editableTabsValue = activeIndex;
+      this.editableTabsValue = activeId;
       this.editableTabs = this.editableTabs.filter(
-        tab => tab.index != targetIndex
+        tab => tab.id != targetId
       );
     },
     tabClick (tab) {
       let selctedArr = this.editableTabs.filter(v => {
-        return v.index == tab.name;
+        return v.id == tab.name;
       });
       this.$router.push({ path: selctedArr[0].path });
     },

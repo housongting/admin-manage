@@ -2,26 +2,26 @@
     "code": 0,
     "data":[
         {"admin":{"username": "admin","token": "admin123456789","menu":[
-               {"title":"表单页面","titlePath":"forms","index": "1","path":"/home/forms","icon":"el-icon-menu","menuMark":"0"},
-               {"title":"表格页面","titlePath":"tables","index": "2","path":"/home/tables","icon":"el-icon-menu","menuMark":"0"},
-               {"title":"加载动画","index": "3","icon":"el-icon-location","menuMark":"1","menuChild":[
-                {"title":"按钮加载","titlePath":"btnLoading","index": "3-1","path":"/home/btnLoading","icon":"el-icon-menu","menuMark":"0"},
-                {"title":"全局加载","titlePath":"allLoading","index": "3-2","path":"/home/allLoading","icon":"el-icon-menu","menuMark":"0"}
+               {"title":"表单页面","titlePath":"forms","id": "1","path":"/home/forms","icon":"el-icon-menu","menuMark":"0"},
+               {"title":"表格页面","titlePath":"tables","id": "2","path":"/home/tables","icon":"el-icon-menu","menuMark":"0"},
+               {"title":"加载动画","id": "3","icon":"el-icon-location","menuMark":"1","menuChild":[
+                {"title":"按钮加载","titlePath":"btnLoading","id": "3-1","path":"/home/btnLoading","icon":"el-icon-menu","menuMark":"0"},
+                {"title":"全局加载","titlePath":"allLoading","id": "3-2","path":"/home/allLoading","icon":"el-icon-menu","menuMark":"0"}
                ]},
-               {"title":"重复页","titlePath":"repeatPage","index": "4","path":"/home/repeatPage","icon":"el-icon-menu","menuMark":"0"},
-               {"title":"仅管理员可见","titlePath":"jurisdiction","index": "5","path":"/home/jurisdiction","icon":"el-icon-menu","menuMark":"0"},
-               {"title":"功能权限","titlePath":"funAuthority","index": "6","path":"/home/funAuthority","icon":"el-icon-menu","menuMark":"0","authorityList":["view","edit"]}
+               {"title":"重复页","titlePath":"repeatPage","id": "4","path":"/home/repeatPage","icon":"el-icon-menu","menuMark":"0"},
+               {"title":"仅管理员可见","titlePath":"jurisdiction","id": "5","path":"/home/jurisdiction","icon":"el-icon-menu","menuMark":"0"},
+               {"title":"功能权限","titlePath":"funAuthority","id": "6","path":"/home/funAuthority","icon":"el-icon-menu","menuMark":"0","authorityList":["view","edit"]}
                ]}
         },
         {"staff":{"username": "staff","token": "staff123456789","menu":[
-            {"title":"表单页面","titlePath":"forms","index": "1","path":"/home/forms","icon":"el-icon-menu","menuMark":"0"},
-            {"title":"表格页面","titlePath":"tables","index": "2","path":"/home/tables","icon":"el-icon-menu","menuMark":"0"},
-            {"title":"加载动画","index": "3","icon":"el-icon-location","menuMark":"1","menuChild":[
-             {"title":"按钮加载","titlePath":"btnLoading","index": "3-1","path":"/home/btnLoading","icon":"el-icon-menu","menuMark":"0"},
-             {"title":"全局加载","titlePath":"allLoading","index": "3-2","path":"/home/allLoading","icon":"el-icon-menu","menuMark":"0"}
+            {"title":"表单页面","titlePath":"forms","id": "1","path":"/home/forms","icon":"el-icon-menu","menuMark":"0"},
+            {"title":"表格页面","titlePath":"tables","id": "2","path":"/home/tables","icon":"el-icon-menu","menuMark":"0"},
+            {"title":"加载动画","id": "3","icon":"el-icon-location","menuMark":"1","menuChild":[
+             {"title":"按钮加载","titlePath":"btnLoading","id": "3-1","path":"/home/btnLoading","icon":"el-icon-menu","menuMark":"0"},
+             {"title":"全局加载","titlePath":"allLoading","id": "3-2","path":"/home/allLoading","icon":"el-icon-menu","menuMark":"0"}
             ]},
-            {"title":"重复页","titlePath":"repeatPage","index": "4","path":"/home/repeatPage","icon":"el-icon-menu","menuMark":"0"},
-            {"title":"功能权限","titlePath":"funAuthority","index": "6","path":"/home/funAuthority","icon":"el-icon-menu","menuMark":"0","authorityList":["view","add"]}
+            {"title":"重复页","titlePath":"repeatPage","id": "4","path":"/home/repeatPage","icon":"el-icon-menu","menuMark":"0"},
+            {"title":"功能权限","titlePath":"funAuthority","id": "6","path":"/home/funAuthority","icon":"el-icon-menu","menuMark":"0","authorityList":["view","add"]}
             ]}
         }
     ]

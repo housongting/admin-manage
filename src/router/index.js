@@ -14,43 +14,43 @@ import funAuthority from '../views/funAuthority/funAuthority.vue'
 import repeatPageParams from '../views/repeatPageParams/repeatPageParams.vue'
 
 const tablesRule = {
-  path: '/home/tables',
+  path: 'tables',
   name: 'tables',
   component: tables,
   // mate:["view"]
 }
 const formsRule = {
-  path: '/home/forms',
+  path: 'forms',
   name: 'forms',
   component: forms
 }
 const btnLoadingRule = {
-  path: '/home/btnLoading',
+  path: 'btnLoading',
   name: 'btnLoading',
   component: btnLoading
 }
 const allLoadingRule = {
-  path: '/home/allLoading',
+  path: 'allLoading',
   name: 'allLoading',
   component: allLoading
 }
 const repeatPageRule = {
-  path: '/home/repeatPage',
+  path: 'repeatPage',
   name: 'repeatPage',
   component: repeatPage
 }
 const jurisdictionRule = {
-  path: '/home/jurisdiction',
+  path: 'jurisdiction',
   name: 'jurisdiction',
   component: jurisdiction
 }
 const funAuthorityRule = {
-  path: '/home/funAuthority',
+  path: 'funAuthority',
   name: 'funAuthority',
   component: funAuthority,
 }
 const repeatPageParamsRule = {
-  path: '/home/repeatPageParams',
+  path: 'repeatPageParams',
   name: 'repeatPageParams',
   component: repeatPageParams,
 }
