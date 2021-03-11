@@ -1,7 +1,7 @@
 <template>
   <div class="p-15">
     <div class="bg-white p-3">
-      <el-link class="mr-3" v-for="(item,index) in msg" :key="index" @click="jump(item)">{{item}}</el-link>
+      <el-link class="mr-3" v-for="(item,index) in msg" :key="index" @click="addTab('repeatPageParams','去哪里',item)">{{item}}</el-link>
     </div>
   </div>
 </template>
@@ -15,14 +15,6 @@ export default {
     }
   },
   methods: {
-    jump (val) {
-      this.$router.push({
-        path: "/home/repeatPageParams",
-        query: {
-          id: val
-        }
-      })
-    }
   }
 }
 </script>

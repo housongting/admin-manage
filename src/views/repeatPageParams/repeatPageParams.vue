@@ -3,6 +3,7 @@
     <div class="bg-white p-3">
       <h1>我在重复页里面，下面是传递过来的参数：</h1>
       {{this.$route.query.id}}
+      <el-button type="primary" @click="backInitPage">回到打开的原始页面</el-button>
     </div>
   </div>
 </template>
@@ -15,8 +16,10 @@ export default {
 
     }
   },
-  mounted () {
-
+  methods: {
+    backInitPage () {
+      this.closeSelfToReload('repeatPage')
+    }
   }
 }
 </script>

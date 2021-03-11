@@ -12,6 +12,8 @@ import jurisdiction from '../views/jurisdiction/jurisdiction.vue'
 import notFound from '../views/notFound/notFound.vue'
 import funAuthority from '../views/funAuthority/funAuthority.vue'
 import repeatPageParams from '../views/repeatPageParams/repeatPageParams.vue'
+import homepage from '../views/homepage/homepage.vue'
+
 
 const tablesRule = {
   path: 'tables',
@@ -54,6 +56,12 @@ const repeatPageParamsRule = {
   name: 'repeatPageParams',
   component: repeatPageParams,
 }
+const homepageRule = {
+  path: 'homepage',
+  name: 'homepage',
+  component: homepage,
+}
+
 
 const ruleMapping = {
   "tables": tablesRule,
@@ -67,6 +75,13 @@ const ruleMapping = {
 
 Vue.use(VueRouter)
 
+// 解决ElementUI导航栏中的vue-router重复点菜单报错问题
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
+
 const routes = [{
     path: '/',
     redirect: '/login', //重定向
@@ -79,9 +94,9 @@ const routes = [{
   {
     path: '/home',
     component: home,
-    redirect: '/home/forms',
+    redirect: '/home/homepage',
     children: [
-      formsRule, //默认
+      homepageRule,
       repeatPageParamsRule //重复页
     ]
   },
@@ -97,14 +112,14 @@ export function initDynamicRoutes() {
   const currentRoutes = router.options.routes //routes路由数组
   const menuList = store.state.menuList
   menuList.forEach((item) => {
-    if (item.titlePath) {
-      let temp = ruleMapping[item.titlePath];
+    if (item.url) {
+      let temp = ruleMapping[item.url];
       temp.meta = item.authorityList;
       currentRoutes[2].children.push(temp);
     }
     if (item.menuChild) {
       item.menuChild.forEach((val) => {
-        let tempChild = ruleMapping[val.titlePath];
+        let tempChild = ruleMapping[val.url];
         tempChild.meta = val.authorityList;
         currentRoutes[2].children.push(tempChild)
       })
