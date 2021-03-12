@@ -3,7 +3,7 @@
     <div class="bg-white p-3">
       <el-row :gutter="20">
         <el-col :span="12">
-          <h2 class="pb-3">前端数据校验</h2>
+          <h3 class="pb-3">数据校验</h3>
           <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="width:400px">
             <el-form-item label="电话号码" prop="telephpne">
               <el-input v-model="ruleForm.telephpne"></el-input>
@@ -11,19 +11,14 @@
             <el-form-item label="活动名称" prop="name">
               <el-input v-model="ruleForm.name"></el-input>
             </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-            </el-form-item>
+
           </el-form>
         </el-col>
         <el-col :span="12">
-          <h2 class="pb-3">后端数据校验</h2>
-          <el-form :model="ruleForm2" :rules="rules" ref="ruleForm2" label-width="100px" class="demo-ruleForm" style="width:400px">
-            <el-form-item label="年龄" prop="age">
-              <el-input v-model="ruleForm2.age"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="submitForm2('ruleForm2')">立即创建</el-button>
+          <h3 class="pb-3"> </h3>
+          <el-form :model="ruleForm2" :rules="rules" ref="ruleForm2" label-width="140px" class="demo-ruleForm" style="width:400px">
+            <el-form-item label="大陆手机号码" prop="chinaTel">
+              <el-input v-model="ruleForm2.chinaTel"></el-input>
             </el-form-item>
           </el-form>
         </el-col>
@@ -31,8 +26,8 @@
     </div>
     <div class="bg-white p-3 mt-3" style="height:400px">
       <el-row :gutter="20">
-        <el-col :span="4">
-          <h2 class=" pb-3">下拉框</h2>
+        <el-col :span="6">
+          <h3 class=" pb-3">下拉框</h3>
           <el-select v-model="inputvalue" clearable placeholder="请选择">
             <div style="padding:0px 6px 6px 6px">
               <el-input v-model="searchinput" placeholder="请输入关键字" @input="show"></el-input>
@@ -43,16 +38,16 @@
             </el-option>
           </el-select>
         </el-col>
-        <el-col :span="4">
-          <h2 class="pb-3">单选可搜索</h2>
+        <el-col :span="6">
+          <h3 class="pb-3">单选可搜索</h3>
           <el-cascader placeholder="试试搜索：指南" :options="options2" filterable clearable :show-all-levels="false"></el-cascader>
         </el-col>
-        <el-col :span="4">
-          <h2 class="pb-3">多选可搜索</h2>
+        <el-col :span="6">
+          <h3 class="pb-3">多选可搜索</h3>
           <el-cascader placeholder="试试搜索：指南" :options="options2" :props="{ multiple: true}" filterable clearable :show-all-levels="false"></el-cascader>
         </el-col>
-        <el-col :span="4">
-          <h2 class="pb-3">自定义节点内容</h2>
+        <el-col :span="6">
+          <h3 class="pb-3">自定义节点内容</h3>
           <el-cascader :options="options2" clearable>
             <template slot-scope="{ node, data }">
               <span>{{ data.label }}</span>
@@ -62,9 +57,6 @@
         </el-col>
       </el-row>
     </div>
-    <div class="bg-white p-3 mt-3" style="height:400px">
-
-    </div>
   </div>
 </template>
 
@@ -72,6 +64,14 @@
 export default {
   name: 'forms',
   data () {
+    var checkchinaTel = (rule, value, callback) => {
+      var MobileRegex = /^1[0-9]{10}$/;
+      if (!MobileRegex.test(value)) {
+        callback(new Error('手机号码格式不正确！'))
+      } else {
+        callback();
+      }
+    }
     return {
       options: [{
         value: '选项1',
@@ -116,7 +116,7 @@ export default {
         name: '',
       },
       ruleForm2: {
-        age: ''
+        chinaTel: ''
       },
       options2: [{
         value: 'zhinan',
@@ -322,25 +322,14 @@ export default {
           { required: true, message: '请输入活动名称', trigger: 'blur' },
           { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
-        age: [
-          { required: true, message: '请输入年龄', trigger: 'blur' },
-        ],
+        chinaTel: [
+          { required: true, message: '请输入手机号', trigger: 'blur' },
+          { validator: checkchinaTel, trigger: 'blur' },
+        ]
       }
     }
   },
   methods: {
-    submitForm (formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert('submit!');
-        } else {
-          console.log('error submit!!');
-          return false;
-        }
-      });
-    },
-    submitForm2 () {
-    },
     show () {
       var inputWord = this.searchinput.trim();
       if (inputWord == '') {
