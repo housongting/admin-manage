@@ -51,7 +51,7 @@ export default {
                 that.$store.commit("setMenuList", responData[0].admin.menu);
                 initDynamicRoutes(); //调用router文件夹的index.js方法，动态添加路由
                 that.$router.push({ path: "/home" });
-                this.$message({
+                that.$message({
                   message: '恭喜你，登录成功！',
                   type: 'success',
                   duration: 1000
@@ -68,21 +68,21 @@ export default {
                 that.$store.commit("setMenuList", responData[1].staff.menu);
                 initDynamicRoutes(); //调用router文件夹的index.js方法，动态添加路由
                 that.$router.push({ path: "/home" });
-                this.$message({
+                that.$message({
                   message: '恭喜你，登录成功！',
                   type: 'success',
                   duration: 1000
                 });
               });
           } else {
-            this.$message.error({
+            that.$message.error({
               message: "未注册成为用户，请更换账号！",
               duration: 1000
             });
             return false;
           }
         } else {
-          this.$message.error({
+          that.$message.error({
             message: "请检查账号，密码是否正确！",
             duration: 1000
           });
