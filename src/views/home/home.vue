@@ -2,8 +2,7 @@
   <div class="home">
     <el-container>
       <el-header class="d-flex justify-content-between align-items-center">
-        <i class="el-icon-s-fold pointer SS" v-show="switchIcon==2" @click="isCollapseBtn(1)"></i>
-        <i class="el-icon-s-unfold pointer ZK" v-show="switchIcon==1" @click="isCollapseBtn(2)"></i>
+        <img src="../../assets/images/scLogo.png" alt="">
         <div class="d-flex align-items-center">
           <span class="welcom-admin">欢迎你，{{username}}！</span>
           <el-dropdown size="medium" placement="bottom">
@@ -18,10 +17,18 @@
         </div>
       </el-header>
       <div class="contentBox">
-        <el-menu :collapse="isCollapse" router unique-opened :default-active="this.$route.path" :collapse-transition="false" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" active-text-color="#409Eff">
+        <el-menu :collapse="isCollapse" router unique-opened :default-active="this.$route.path" :collapse-transition="false" class="el-menu-vertical-demo" background-color="#fff" text-color="#409EFF" active-text-color="#409EFF">
+          <div class="text-center switchCla pointer" style="border-bottom:1px solid #eee">
+            <p v-show="switchIcon==2" @click="isCollapseBtn(1)">
+              <i class="el-icon-s-fold pointer SS mr-2" style="font-size:1.2rem"></i><span>收缩</span>
+            </p>
+            <p v-show="switchIcon==1" @click="isCollapseBtn(2)" style="font-size:13px">
+              <i class="el-icon-s-unfold pointer ZK mr-2"></i><span>展开</span>
+            </p>
+          </div>
           <template v-for="(v,i) in menu_date">
             <!-- 一级 -->
-            <el-submenu v-if="v.dropdown==1" :key="i" :index="v.id">
+            <el-submenu v-if="v.dropdown==1" :key="i" :index="v.id" style="border-bottom:1px solid #eee">
               <template slot="title">
                 <i :class="v.icon"></i>
                 <span>{{v.title}}</span>
@@ -42,10 +49,12 @@
                 </el-menu-item>
               </template>
             </el-submenu>
-            <el-menu-item v-else :key="i" :index="v.path" @click="addTab(v.url,v.title)">
+
+            <el-menu-item v-else :key="i" :index="v.path" @click="addTab(v.url,v.title)" style="border-bottom:1px solid #eee">
               <i :class="v.icon"></i>
               <span slot="title">{{v.title}}</span>
             </el-menu-item>
+
           </template>
         </el-menu>
         <div class="rightContentBox">

@@ -13,7 +13,7 @@ import notFound from '../views/notFound/notFound.vue'
 import funAuthority from '../views/funAuthority/funAuthority.vue'
 import repeatPageParams from '../views/repeatPageParams/repeatPageParams.vue'
 import homepage from '../views/homepage/homepage.vue'
-
+import querypage from '../views/querypage/querypage.vue'
 
 const tablesRule = {
   path: 'tables',
@@ -61,6 +61,11 @@ const homepageRule = {
   name: 'homepage',
   component: homepage,
 }
+const querypageRule = {
+  path: 'querypage',
+  name: 'querypage',
+  component: querypage,
+}
 
 
 const ruleMapping = {
@@ -71,6 +76,8 @@ const ruleMapping = {
   "repeatPage": repeatPageRule,
   "jurisdiction": jurisdictionRule,
   "funAuthority": funAuthorityRule,
+  "querypage": querypageRule,
+
 }
 
 Vue.use(VueRouter)
@@ -97,7 +104,7 @@ const routes = [{
     redirect: '/home/homepage',
     children: [
       homepageRule,
-      repeatPageParamsRule //重复页
+      repeatPageParamsRule, //重复页
     ]
   },
   {

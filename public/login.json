@@ -10,7 +10,8 @@
                ]},
                {"title":"重复页","url":"repeatPage","id": "4","path":"/home/repeatPage","icon":"el-icon-menu","dropdown":"0"},
                {"title":"仅管理员可见","url":"jurisdiction","id": "5","path":"/home/jurisdiction","icon":"el-icon-menu","dropdown":"0"},
-               {"title":"功能权限","url":"funAuthority","id": "6","path":"/home/funAuthority","icon":"el-icon-menu","dropdown":"0","authorityList":["view","edit"]}
+               {"title":"功能权限","url":"funAuthority","id": "6","path":"/home/funAuthority","icon":"el-icon-menu","dropdown":"0","authorityList":["view","edit"]},
+               {"title":"查询页面","url":"querypage","id": "7","path":"/home/querypage","icon":"el-icon-menu","dropdown":"0"}
                ]}
         },
         {"staff":{"username": "staff","token": "staff123456789","menu":[
@@ -21,7 +22,8 @@
              {"title":"全局加载","url":"allLoading","id": "3-2","path":"/home/allLoading","icon":"el-icon-menu","dropdown":"0"}
             ]},
             {"title":"重复页","url":"repeatPage","id": "4","path":"/home/repeatPage","icon":"el-icon-menu","dropdown":"0"},
-            {"title":"功能权限","url":"funAuthority","id": "6","path":"/home/funAuthority","icon":"el-icon-menu","dropdown":"0","authorityList":["view","add"]}
+            {"title":"功能权限","url":"funAuthority","id": "6","path":"/home/funAuthority","icon":"el-icon-menu","dropdown":"0","authorityList":["view","add"]},
+            {"title":"查询页面","url":"querypage","id": "7","path":"/home/querypage","icon":"el-icon-menu","dropdown":"0"}
             ]}
         }
     ]
