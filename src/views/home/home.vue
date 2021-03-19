@@ -41,18 +41,20 @@
                     <span>{{value.title}}</span>
                   </template>
                   <!-- 三级未做下拉 -->
-                  <el-menu-item v-for="(x,y) in value.menuChild" :key="y" :index="x.path" @click="addTab(x.url,x.title)">{{x.title}}</el-menu-item>
+                  <!-- <el-menu-item v-for="(x,y) in value.menuChild" :key="y" :index="x.path" @click="addTab(x.url,x.title)">{{x.title}}</el-menu-item> -->
                 </el-submenu>
                 <el-menu-item v-else :key="key" :index="value.path" @click="addTab(value.url,value.title)">
                   <i :class="value.icon"></i>
-                  <span slot="title">{{value.title}}</span>
+                  <span>{{value.title}}</span>
+                  <div class="NEWS" v-show="isNEWS==1">45</div>
                 </el-menu-item>
               </template>
             </el-submenu>
 
             <el-menu-item v-else :key="i" :index="v.path" @click="addTab(v.url,v.title)" style="border-bottom:1px solid #eee">
               <i :class="v.icon"></i>
-              <span slot="title">{{v.title}}</span>
+              <span>{{v.title}}</span>
+              <div class="NEWS" v-show="isNEWS==1">255</div>
             </el-menu-item>
 
           </template>
@@ -79,6 +81,7 @@ export default {
   name: "home",
   data () {
     return {
+      isNEWS: 1,
       username: '',
       switchIcon: 2,
       admin_image: require("../../assets/images/admin.png"),
@@ -91,9 +94,11 @@ export default {
     isCollapseBtn (val) {
       this.switchIcon = val;
       if (this.switchIcon == 1) {
-        this.isCollapse = true;
+        this.isCollapse = true;   //折叠
+        this.isNEWS = 0;    //隐藏
       } else {
-        this.isCollapse = false;
+        this.isCollapse = false;  //不折叠
+        this.isNEWS = 1;  //显示
       }
     },
     backAdmin () {
