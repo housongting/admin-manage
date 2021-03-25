@@ -14,6 +14,7 @@ import funAuthority from '../views/funAuthority/funAuthority.vue'
 import repeatPageParams from '../views/repeatPageParams/repeatPageParams.vue'
 import homepage from '../views/homepage/homepage.vue'
 import querypage from '../views/querypage/querypage.vue'
+import dataConfiguration from '../views/dataConfiguration/dataConfiguration.vue'
 
 const tablesRule = {
   path: 'tables',
@@ -66,6 +67,11 @@ const querypageRule = {
   name: 'querypage',
   component: querypage,
 }
+const dataConfigurationRule = {
+  path: 'dataConfiguration',
+  name: 'dataConfiguration',
+  component: dataConfiguration,
+}
 
 
 const ruleMapping = {
@@ -77,7 +83,7 @@ const ruleMapping = {
   "jurisdiction": jurisdictionRule,
   "funAuthority": funAuthorityRule,
   "querypage": querypageRule,
-
+  "dataConfiguration": dataConfigurationRule
 }
 
 Vue.use(VueRouter)
@@ -105,6 +111,7 @@ const routes = [{
     children: [
       homepageRule,
       repeatPageParamsRule, //重复页
+      dataConfigurationRule
     ]
   },
   {
