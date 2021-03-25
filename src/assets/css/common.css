@@ -406,3 +406,118 @@ ul li {
 .pl-5, .px-5 {
   padding-left: 3rem !important;
 }
+
+/* 数据源样式 */
+
+.content {
+  position: relative;
+}
+
+.content:first-child.active {
+  height: auto;
+  max-height: 62px;
+  min-height: 62px !important;
+  overflow: hidden;
+}
+
+.content:first-child.active .slide_btn {
+  transform: rotate(0deg);
+}
+
+.form_box {
+  position: relative;
+  padding-right: 165px;
+}
+
+.form_box .input_box {
+  width: calc(100% / 3);
+  display: inline-block;
+  margin-bottom: 9px;
+}
+
+@media all and (max-width: 1200px) {
+  .form_box .input_box {
+    width: calc(100% / 2);
+  }
+}
+
+.form_box .input_box>* {
+  width: calc(100% - 130px);
+  margin: 7px 0px 7px 10px;
+}
+
+.form_box .input_box>label {
+  display: inline-block;
+  width: 110px;
+  text-align: left;
+  text-indent: 15px;
+  margin: 0;
+}
+
+.form_box span.ant-calendar-picker {
+  width: 100%!important;
+}
+
+.ant-calendar-picker-icon {
+  display: none;
+}
+
+.form_box .btn-box {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(calc(-50% - 4px));
+  margin-top: -20px\0;
+}
+
+.form_box .btn-box {
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  margin-top: 20px;
+  left: 50%;
+  margin-left: -103px;
+}
+
+.btn {
+  display: inline-block;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 30px;
+  background-color: #113678;
+  color: #fff;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+.btn:last-child {
+  margin-right: 0px;
+}
+
+.btn-1 {
+  background: #113678;
+  color: white;
+}
+
+.btn-2 {
+  background: #e3eaef;
+  color: #323a46;
+}
+
+.slide_btn {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: url("/static/imgs/cir.png") no-repeat 0 0 / 100% 100%;
+  transform: rotate(180deg);
+  bottom: 0px;
+  left: 50%;
+  margin-left: -10px;
+  cursor: pointer;
+  transition: all 0.5s;
+}

@@ -11,6 +11,15 @@ export default {
   name: "app",
   created () {
     initDynamicRoutes()  //解决登录成功后，刷新点击菜单跳转失败
+  },
+  mounted () {
+    // $(document).on('click', '.slide_btn', function () {
+    //   if ($(this).parent().hasClass('active')) {
+    //     $(this).parent().removeClass('active');
+    //   } else {
+    //     $(this).parent().addClass('active');
+    //   }
+    // })
   }
 }
 </script>

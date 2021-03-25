@@ -1,0 +1,69 @@
+.form_box{
+  padding-right: 0px!important;
+}
+.content:first-child{
+  max-height: 600px;
+  padding-bottom: 0px;
+  /*transition: all 0.5s;*/
+}
+.content:nth-child(2){
+  padding-bottom: 35px!important;
+}
+.form_box .btn-box{
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  margin-top: 20px;
+  left: 50%;
+  margin-left: -103px;
+}
+.btn{
+  display: inline-block;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 30px;
+  background-color: #009688;
+  color: #fff;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 30px;
+}
+.btn-1{
+  background: #113678;
+  color: white;
+}
+.btn-2{
+  background: #e3eaef;
+  color: #323a46;
+}
+.slide_btn{
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background:url("../../../static/imgs/cir.png") no-repeat 0 0 / 100% 100%;
+  transform: rotate(180deg);
+  bottom:0px;
+  left: 50%;
+  margin-left: -10px;
+  cursor: pointer;
+  transition:all 0.5s;
+}
+.content:first-child.active{
+  height: auto;
+  max-height: 67px;
+  min-height: 67px!important;
+  overflow: hidden;
+}
+.content:first-child.active .slide_btn{
+  transform: rotate(0deg);
+}
+td,th{
+  word-break: keep-all!important;
+}
+.page_box{
+  background: white!important;
+}
