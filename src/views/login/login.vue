@@ -12,7 +12,7 @@
           <span style="width:50px;display:inline-block"></span>录
         </el-button>
       </el-form-item>
-      <p style="color:#DCDFE6;">admin <span style="width:10px;display:inline-block"></span>管理员<br>staff<span style="width:10px;display:inline-block"></span>成员</p>
+      <p style="color:#DCDFE6;">admin <span style="width:10px;display:inline-block"></span>管 理 员<br>staff<span style="width:10px;display:inline-block"></span>成员</p>
     </el-form>
   </div>
 </template>
