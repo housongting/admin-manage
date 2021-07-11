@@ -4,7 +4,7 @@
       <el-row :gutter="20">
         <el-col :span="24">
           <el-button type="primary" @click="btn(1)"><i class="el-icon-loading el-icon--left" v-show="isshow==1"></i>点下试一试！</el-button>
-          <el-button type="primary" :loading="loading" @click="btn2">点我一下就加载！</el-button>
+          <el-button type="primary" :loading="loading" @click="btn2">点 我 一下就加载！</el-button>
         </el-col>
       </el-row>
     </div>
